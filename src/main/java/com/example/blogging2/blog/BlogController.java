@@ -34,4 +34,9 @@ public class BlogController {
     public BlogResponseComplete modifica(@PathVariable Long id,@RequestBody BlogRequest request){
         return blogService.modifica(id, request);
     }
+   @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id){
+        blogService.deleteById(id);
+
+   }
 }

@@ -1,10 +1,9 @@
 package com.example.blogging2.blog;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.blogging2.autore.Autore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +21,15 @@ public class Blog {
     private String cover="https://picsum.photo/200/300";
     private String contenuto;
     private int tempoDiLettura;
+    @ManyToOne
+    @JsonIgnoreProperties("blogs")
+    private Autore autore;
 
-    public Blog(String categoria, String titolo, String contenuto, int tempoDiLettura) {
+    public Blog(String categoria, String titolo, String contenuto, int tempoDiLettura, Autore autore) {
         this.categoria = categoria;
         this.titolo = titolo;
         this.contenuto = contenuto;
         this.tempoDiLettura = tempoDiLettura;
+        this.autore = autore;
     }
 }

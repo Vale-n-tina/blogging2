@@ -12,7 +12,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BlogService {
     private final BlogRepository blogRepository;
-
+//
+//    public Blog savee(Blog blog){
+//        return blogRepository.save(blog);
+//    }
 
     public BlogResponseId save(BlogRequest request) {
         if (blogRepository.existsByTitolo(request.getTitolo())) {
@@ -27,6 +30,7 @@ public class BlogService {
         BeanUtils.copyProperties(blog, response);
         return response;
     }
+
 
     public List<Blog> findAll() {
         return blogRepository.findAll();
@@ -47,6 +51,16 @@ public class BlogService {
         BeanUtils.copyProperties(blog, response);
         return response;
 
+
+    }
+
+    public void deleteById(Long id) {
+        if (!blogRepository.existsById(id)) {
+            throw new EntityNotFoundException("Blog non trovato");
+
+        }
+        Blog blog = findById(id);
+        blogRepository.deleteById(id);
 
     }
 
