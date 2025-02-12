@@ -3,6 +3,7 @@ package com.example.blogging2.autore;
 import com.example.blogging2.blog.Blog;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,11 @@ public class AutoreController {
     private final AutoreService autoreService;
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Autore> findAll() {
-        return autoreService.findAll();
+    public Page<Autore> findAll(@RequestParam (defaultValue = "0") int page, @RequestParam (defaultValue = "15") int size, @RequestParam(defaultValue = "id") String sort) {
+        return autoreService.findAll(page, size, sort);
+
     }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public AutoreResponseComplete findById(@PathVariable Long id) {
