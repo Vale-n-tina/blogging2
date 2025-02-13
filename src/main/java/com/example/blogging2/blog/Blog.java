@@ -18,7 +18,7 @@ public class Blog {
     private Long id;
     private String categoria;
     private String titolo;
-    private String cover="https://picsum.photo/200/300";
+    private String cover;
     private String contenuto;
     private int tempoDiLettura;
     @ManyToOne

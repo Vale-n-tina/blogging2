@@ -22,7 +22,7 @@ public class Autore {
     private String cognome;
     private String email;
     private Date dataNascita;
-    private String avatar="https://ui-avatars.com/api/?name=Mario+Rossi";
+    private String avatar;
     @OneToMany(mappedBy = "autore")
     @JsonIgnoreProperties("autore")
     private List<Blog> blogs;

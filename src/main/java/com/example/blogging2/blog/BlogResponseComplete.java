@@ -17,5 +17,6 @@ public class BlogResponseComplete {
     private String cover;
     private String contenuto;
     private int tempoDiLettura;
+    private String avatar;
     private Autore autore;
 }

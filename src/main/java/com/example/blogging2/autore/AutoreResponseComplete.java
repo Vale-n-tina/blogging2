@@ -15,5 +15,5 @@ public class AutoreResponseComplete {
     private String cognome;
     private String email;
     private Date dataNascita;
-    private String avatar = "https://ui-avatars.com/api/?name=Mario+Rossi";
+    private String avatar;
 }
