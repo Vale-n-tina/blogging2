@@ -1,5 +1,6 @@
 package com.example.blogging2.autore;
 
+import com.example.blogging2.mail.EmailService;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AutoreService {
     private final AutoreRepository autoreRepository;
+    private final EmailService emailService;
 
     public Autore save(Autore autore) {
 
@@ -49,6 +51,11 @@ public class AutoreService {
         Autore autore = new Autore();
         BeanUtils.copyProperties(request, autore);
         autoreRepository.save(autore);
+        try {emailService.sendEmail(request.getEmail(), "Welcome to our blog", "Your account has been created");}
+        catch (Exception e) {
+            throw new RuntimeException("Error sending email", e);
+        }
+
         AutoreResponseId autoreResponseId = new AutoreResponseId();
         BeanUtils.copyProperties(autore, autoreResponseId);
         return autoreResponseId;
