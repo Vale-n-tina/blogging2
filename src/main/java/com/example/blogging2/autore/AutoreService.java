@@ -3,6 +3,7 @@ package com.example.blogging2.autore;
 import com.example.blogging2.mail.EmailService;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -10,11 +11,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Validated
 public class AutoreService {
     private final AutoreRepository autoreRepository;
     private final EmailService emailService;
@@ -44,7 +47,7 @@ public class AutoreService {
         return autoreResponseComplete;
     }
 
-    public AutoreResponseId create(AutoreRequest request) {
+    public AutoreResponseId create(@Valid AutoreRequest request) {
         if(autoreRepository.existsByNomeIgnoreCase(request.getNome()) ){
             throw new EntityExistsException("Autore already exists" );
         }
