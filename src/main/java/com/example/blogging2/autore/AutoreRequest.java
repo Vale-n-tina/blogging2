@@ -15,11 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 
 public class AutoreRequest {
-    @NotNull
     @NotBlank(message = "Nome non può essere vuoto")
     private String nome;
     @NotBlank(message = "Cognome non può essere vuoto")
-    @NotNull
     private String cognome;
     @Email(message = "Email non valida")
     private String email;

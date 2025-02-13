@@ -1,6 +1,7 @@
 package com.example.blogging2.blog;
 
 import com.example.blogging2.autore.Autore;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BlogRequest {
-    @NotNull(message = "La categoria è obbligatoria")
+    @NotBlank(message = "la categoria è  obbligatoria")
     private String categoria;
-    @NotNull(message = "Il titolo è obbligatorio"  )
+    @NotBlank(message = "Il titolo è obbligatorio"  )
     private String titolo;
     private String contenuto;
     private int tempoDiLettura;

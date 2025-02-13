@@ -2,14 +2,17 @@ package com.example.blogging2.blog;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Validated
 public class BlogService {
     private final BlogRepository blogRepository;
 //
@@ -17,7 +20,7 @@ public class BlogService {
 //        return blogRepository.save(blog);
 //    }
 
-    public BlogResponseId save(BlogRequest request) {
+    public BlogResponseId save(@Valid BlogRequest request) {
         if (blogRepository.existsByTitolo(request.getTitolo())) {
             throw new EntityExistsException("Titolo già presente");
         }
