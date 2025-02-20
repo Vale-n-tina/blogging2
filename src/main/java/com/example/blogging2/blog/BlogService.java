@@ -34,7 +34,7 @@ public class BlogService {
         BeanUtils.copyProperties(blog, response);
         return response;
     }
-
+//commento di prova
 
     public List<Blog> findAll() {
         return blogRepository.findAll();
