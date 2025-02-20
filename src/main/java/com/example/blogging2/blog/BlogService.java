@@ -26,6 +26,7 @@ public class BlogService {
         }
         Blog blog = new Blog();
         BeanUtils.copyProperties(request, blog);
+        //commento di prova
 
         blogRepository.save(blog);
         BlogResponseId response = new BlogResponseId();
